@@ -27,10 +27,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     function calculateAge(birthday, currentDate) {
-      const yearDiff = currentDate.getFullYear() - birthday.getFullYear();
-      const monthDiff = currentDate.getMonth() - birthday.getMonth();
-      const dayDiff = currentDate.getDate() - birthday.getDate();
-  
+      let yearDiff = currentDate.getFullYear() - birthday.getFullYear();
+      let monthDiff = currentDate.getMonth() - birthday.getMonth();
+      let dayDiff = currentDate.getDate() - birthday.getDate();
+      
+      if (dayDiff < 0) {
+        monthDiff--;
+        const lastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 0);
+        dayDiff = lastMonth.getDate() + dayDiff;
+      }
+      
+      if (monthDiff < 0) {
+        yearDiff--;
+        monthDiff = 12 + monthDiff;
+      }
+
       return {
         years: yearDiff,
         months: monthDiff,
@@ -42,4 +53,4 @@ document.addEventListener("DOMContentLoaded", function () {
       const { years, months, days } = age;
       return `${years} years, ${months} months, and ${days} days`;
     }
-  });
+});
