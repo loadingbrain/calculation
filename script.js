@@ -43,4 +43,3 @@ document.addEventListener("DOMContentLoaded", function () {
       return `${years} years, ${months} months, and ${days} days`;
     }
   });
-  
